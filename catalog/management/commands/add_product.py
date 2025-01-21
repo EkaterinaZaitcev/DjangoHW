@@ -4,15 +4,15 @@ from catalog.models import Product, Category
 class Command(BaseCommand):
     help = 'заполнения базы-данных о продуктах'
 
-    def handle(self, *args, **kwargs):
+    def handle(self, *args, **options):
         # Удаляем существующие записи
         Product.objects.all().delete()
 
-        сategory, _ = Category.objects.get_or_create(name='Фрукты')
+        category, _ = Category.objects.get_or_create(name='бакалея', description='Разные сыпучие продукты')
 
         products = [
-            {'name': 'апельсин',"description": "оранжевый", 'сategory': сategory},
-            {"name": "яблоко", "description": "зеленое", 'сategory': сategory}
+            {'name': 'рис', 'description': 'бурый', 'category': category, 'price': '123,14'},
+            {'name': 'гречка', 'description': 'зеленая', 'category': category, 'price': '83,14'}
         ]
 
         for prod in products:
