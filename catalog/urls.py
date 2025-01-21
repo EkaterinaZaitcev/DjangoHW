@@ -10,6 +10,4 @@ app_name = CatalogConfig.name
 urlpatterns = [
     path('', home, name='home'),
     path('contacts/', contacts, name='contacts'),
-    path("catalog/", include('catalog.urls', namespace="catalog")),
-    path("", include('media.urls', namespace="media"))
 ]
