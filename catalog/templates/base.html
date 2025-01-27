@@ -1,4 +1,5 @@
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="{% static 'js/color-modes.js' %}"></script>
@@ -191,7 +192,7 @@
           <li class="nav-item"><a class="nav-link" href="#">
             <svg class="bi" width="24" height="24"><use xlink:href="#aperture"/></svg>
           </a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Главная</a></li>
+          <li class="nav-item"><a class="nav-link" href="{% url 'catalog:home' %}">Главная</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Продукты</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Вход</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Регистрация</a></li>
