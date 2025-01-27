@@ -1,8 +1,8 @@
 from django.db import models
 
 class Product(models.Model):
-    name = models.CharField(max_length=100, verbose_name='название', help_text='Введите название' )
-    description = models.TextField(max_length=100, verbose_name='описание', help_text='Введите описание')
+    name = models.CharField(max_length=250, verbose_name='название', help_text='Введите название' )
+    description = models.TextField(max_length=250, verbose_name='описание', help_text='Введите описание')
     image = models.ImageField(upload_to='media/photo', blank=True, null=True, verbose_name='фото',
                               help_text='Загрузите фотографию')
     category = models.ForeignKey("Category", on_delete=models.CASCADE, verbose_name='категория',
@@ -21,9 +21,9 @@ class Product(models.Model):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=100, verbose_name='название', help_text='Введите название', blank=True,
+    name = models.CharField(max_length=250, verbose_name='название', help_text='Введите название', blank=True,
                             null=True)
-    description = models.TextField(max_length=100, verbose_name='описание', help_text='Введите описание', blank=True,
+    description = models.TextField(max_length=250, verbose_name='описание', help_text='Введите описание', blank=True,
                                    null=True)
 
     def __str__(self):
