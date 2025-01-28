@@ -6,7 +6,7 @@
     <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 py-3">
         <h2 class="display-5">{{ products.name }}</h2>
-        <p class="lead">{{ products.description}}</p>
+        <p class="lead">{{ products.description | truncatechars:100 }}</p>
         <img src="{{ products.image | media_filter }}"><br/>
         <a href="{% url 'catalog:product_list' %}" class="btn btn-primary" role="button" >Назад</a>
       </div>
