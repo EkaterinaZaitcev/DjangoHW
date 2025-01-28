@@ -7,10 +7,11 @@
     <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
       <div class="my-3 py-3">
         <h2 class="display-5">{{ prod.name }}</h2>
-        <p class="lead">And an even wittier subheading.</p>
-        <img src="{{ prod.image | media_filter }}" style="max-width: 450px; max-height: 300px">
+        <p class="lead">{{ prod.description}}</p>
+        <img src="{{ prod.image | media_filter }}" style="max-width: 450px; max-height: 300px"><br/>
+        <a href="{% url 'catalog:products_detail' prod.pk %}" class="btn btn-primary" role="button" >Посмотреть</a>
       </div>
-    </div><br>
+    </div><br/>
     {% endfor %}
 </div>
 {% endblock %}

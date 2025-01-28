@@ -13,7 +13,7 @@ def product_list(request):
     context = {"products": products}
     return render(request, 'product_list.html', context)
 
-def products_detail(request, product_id):
-    products = get_object_or_404(Product, id=product_id)
+def products_detail(request, pk):
+    products = get_object_or_404(Product, pk=pk)
     context = {"products": products}
     return render(request, 'products_detail.html', context)
