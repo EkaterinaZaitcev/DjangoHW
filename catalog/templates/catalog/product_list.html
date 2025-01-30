@@ -11,8 +11,8 @@
         <p class="lead">{{ prod.category}}</p>
         <p class="lead">{{ prod.created_at}}</p>
         <p class="lead">{{ prod.updated_at}}</p>
-        <img src="/photo/{{ object.image }}" style="max-width: 450px; max-height: 300px"><br/>
-        <a href="{% url 'catalog:products_detail' prod.pk %}" class="btn btn-primary" role="button" >Посмотреть</a>
+        <img src="{{ prod.image }}" style="max-width: 450px; max-height: 300px"><br/>
+        <a href="{% url 'catalog:product_detail' prod.pk %}" class="btn btn-primary" role="button" >Посмотреть</a>
       </div>
     </div><br/>
     {% endfor %}

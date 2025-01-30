@@ -1,11 +1,9 @@
-from django.urls import path, include
+from django.urls import path
 from blog.views import BlogListView, BlogDetailView, BlogCreateView, BlogUpdateView, BlogDeleteView
 
-from catalog.views import home
-from catalog.views import contacts
-from catalog.views import product_list, products_detail
+from blog.apps import BlogConfig
 
-app_name = CatalogConfig.name
+app_name = BlogConfig.name
 
 urlpatterns = [
     path('home/<int:pk>/', BlogDetailView.as_view(), name='blog_detail'),

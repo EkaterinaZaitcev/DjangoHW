@@ -1,6 +1,4 @@
 from django.db import models
-from pygments.lexer import default
-
 
 class Blog(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')
