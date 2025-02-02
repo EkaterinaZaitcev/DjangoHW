@@ -1,0 +1,23 @@
+{% extends 'blog/base.html'%}
+{% load blog_my_tags %}
+{% block content %}
+<div class="card mb-5 flex-wrap w-100 my-md-5 ps-md-3 overflow-hidden">
+  <div class="card-body text-center px-md-5">
+     {% for blog in blogs %}
+        <div class="col-3">
+            <div class="card" style="width: 18rem;">
+              <div class="card-body">
+                <h5 class="card-title">{{ blog.title }}</h5>
+                <img src="/media/{{ blog.image| media_filter }}" class="card-img-top" alt="...">
+                <p class="card-text">{{ blog.content|truncatechars:100 }}</p>
+                  <li>- {{ blog.created_at }}</li>
+                <a href="{% url 'blog:detail_blog' blog.pk %}" class="btn btn-primary">Читать</a>
+                <a href="{% url 'blog:update_blog' blog.pk %}" class="btn btn-primary">Редактировать</a>
+
+              </div>
+            </div>
+        </div><br/>
+        {% endfor %}
+  </div>
+</div>
+{% endblock %}

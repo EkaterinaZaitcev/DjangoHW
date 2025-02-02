@@ -155,7 +155,7 @@
 </svg>
 
 <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
-{% include 'blog/inc_menu.html' %}
+{% include 'blog/includes/inc_menu.html' %}
 </nav>
 
 <main>
@@ -163,16 +163,7 @@
     <div class="col-md-6 p-lg-5 mx-auto my-5">
       <h1 class="display-3 fw-bold">Блог</h1>
       <h3 class="fw-normal text-muted mb-3">Самые популярные статьи</h3>
-      <div class="d-flex gap-3 justify-content-center lead fw-normal">
-        <a class="icon-link" href="#">
-          Learn more
-          <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-        </a>
-        <a class="icon-link" href="#">
-          Buy
-          <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-        </a>
-      </div>
+      <a class="btn btn-primary" href="{% url 'blog:create_blog' %}" role="button">Добавить пост</a>
     </div>
     <div class="product-device shadow-sm d-none d-md-block"></div>
     <div class="product-device product-device-2 shadow-sm d-none d-md-block"></div>

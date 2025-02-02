@@ -6,7 +6,7 @@ from blog.models import Blog
 
 class BlogListView(ListView):
     model = Blog
-    template_name = 'blog/home.html'
+    template_name = '/blog/blog_list.html'
     context_object_name = 'blogs'
 
 
@@ -23,8 +23,7 @@ class BlogCreateView(CreateView):
 
 class BlogDetailView(DetailView):
     model = Blog
-    template_name = 'blog/blog_detail.html'
-    context_object_name = 'blog'
+
 
     def get_object(self, queryset=None):
         self.object = super().get_object(queryset)
@@ -40,7 +39,7 @@ class BlogUpdateView(UpdateView):
     success_url = reverse_lazy('blog:home')
 
     def get_success_url(self):
-        return reverse_lazy('blog:detail', kwargs={'pk': self.object.pk})
+        return reverse_lazy('blog:detail_blog', kwargs={'pk': self.object.pk})
 
 
 class BlogDeleteView(DeleteView):

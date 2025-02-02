@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+{% load blog_my_tags %}
+
+{% block content %}
+<div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+    <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <body class="text-center">
+            <h1>Информация о статье</h1>
+            <p class="lead">Заголовок: {{object.title}}</p>
+            <p class="lead">Содержимое: {{object.content}}</p>
+            <p class="lead">Изображение: <img src="/media/{{ blog.image }}"></p>
+            <p class="lead">Дата создания: {{object.created_at}}</>
+            <p class="lead">Количество просмотров: {{object.count_of_views}}</p>
+            <a class="btn btn-primary" href="{% url 'blog:home' %}" role="button">Назад</a>
+            <a href="{% url 'blog:delete_blog' blog.pk %}" class="btn btn-danger">Удалить</a>
+        </body>
+      </div>
+    </div>
+</div>
+{% endblock %}
