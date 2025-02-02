@@ -11,14 +11,14 @@ class BlogListView(ListView):
 
 
     def get_queryset(self):
-        return Blog.objects.filter(publication_sing=True)
+        return Blog.objects.filter(is_publication=True)
 
 
 class BlogCreateView(CreateView):
     model = Blog
-    fields = ['title', 'content', 'image', 'count_of_views', 'publication_sing']
+    fields = ['title', 'content', 'image', 'is_publication']
     template_name = 'blog/blog_form.html'
-    success_url = reverse_lazy('blog:home')
+    success_url = reverse_lazy('blog:list_blog')
 
 
 class BlogDetailView(DetailView):
@@ -34,9 +34,9 @@ class BlogDetailView(DetailView):
 
 class BlogUpdateView(UpdateView):
     model = Blog
-    fields = ['title', 'content', 'image', 'count_of_views', 'publication_sing']
+    fields = ['title', 'content', 'image', 'is_publication']
     template_name = 'blog/blog_form.html'
-    success_url = reverse_lazy('blog:home')
+    success_url = reverse_lazy('blog:list_blog')
 
     def get_success_url(self):
         return reverse_lazy('blog:detail_blog', kwargs={'pk': self.object.pk})
@@ -45,4 +45,4 @@ class BlogUpdateView(UpdateView):
 class BlogDeleteView(DeleteView):
     model = Blog
     template_name = 'blog/blog_delete.html'
-    success_url = reverse_lazy('blog:home')
+    success_url = reverse_lazy('blog:list_blog')

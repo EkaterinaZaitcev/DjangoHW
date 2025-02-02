@@ -12,7 +12,7 @@
             <p class="lead">Изображение: <img src="/media/{{ blog.image }}"></p>
             <p class="lead">Дата создания: {{object.created_at}}</>
             <p class="lead">Количество просмотров: {{object.count_of_views}}</p>
-            <a class="btn btn-primary" href="{% url 'blog:home' %}" role="button">Назад</a>
+            <a class="btn btn-primary" href="{% url 'blog:list_blog' %}" role="button">Назад</a>
             <a href="{% url 'blog:delete_blog' blog.pk %}" class="btn btn-danger">Удалить</a>
         </body>
       </div>
