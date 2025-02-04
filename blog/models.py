@@ -2,7 +2,6 @@ from django.db import models
 
 class Blog(models.Model):
     title = models.CharField(max_length=150, verbose_name='Название')
-    slug = models.SlugField(default="", null=False)
     content = models.TextField()
     image = models.ImageField(upload_to='image/')
     created_at = models.DateTimeField(auto_now_add=True)
