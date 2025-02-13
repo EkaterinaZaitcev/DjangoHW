@@ -19,7 +19,8 @@ class ProductForm(StyleFormMixin, ModelForm):
 
     def clean_name(self):
         ban_words = ["казино", "криптовалюта", "крипта", "биржа", "дешево", "бесплатно", "обман", "полиция", "радар"]
-        name = self.cleaned_data.get('name')
+        cleaned_data = super().clean()
+        name = cleaned_data.get('name')
         for word in ban_words:
             if word in name.lower():
                 raise ValidationError(f'Слово "{word}" недопустимо в имени товара')
@@ -35,24 +36,18 @@ class ProductForm(StyleFormMixin, ModelForm):
 
 
     def clean_price(self):
-
         cleaned_data = super().clean()
         price = cleaned_data.get('price')
-
         if price < 0:
            raise ValidationError('Цена не может быть отрицательной')
         return price
 
-    def clean_photo(self):
-        image = self.cleaned_data.get('image')
-
-
-        if image:
-            if not (image.name.endswith('.jpg') or image.name.endswith('.jpeg') or image.name.endswith('.png')):
-                raise ValidationError('Только JPEG или PNG.')
-
-
-            if image.size > 5 * 1024 * 1024:  # 5 МБ
-                raise ValidationError('Размер файла не выше 5 МБ.')
+    def clean_image(self):
+        cleaned_data = super().clean()
+        image = cleaned_data.get('image')
+        if image.size > 5 * 1024 * 1024:
+            raise ValidationError("Размер файла не должен превышать 5 МБ.")
+        if image.name.endswith(('jpg', 'jpeg', 'png')):
+            raise ValidationError("Недопустимый формат файла. Загрузите JPEG или PNG.")
 
         return image
