@@ -45,9 +45,10 @@ class ProductForm(StyleFormMixin, ModelForm):
     def clean_image(self):
         cleaned_data = super().clean()
         image = cleaned_data.get('image')
+        valid_extensions = ('jpg', 'png', 'jpeg')
+        _, ext = image.name.rsplit('.', maxsplit=1)
         if image.size > 5 * 1024 * 1024:
             raise ValidationError("Размер файла не должен превышать 5 МБ.")
-        if image.name.endswith(('jpg', 'jpeg', 'png')):
+        if ext not in valid_extensions:
             raise ValidationError("Недопустимый формат файла. Загрузите JPEG или PNG.")
-
         return image
