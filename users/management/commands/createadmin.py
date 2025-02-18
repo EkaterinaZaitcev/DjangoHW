@@ -11,7 +11,7 @@ class Command(BaseCommand):
             last_name='admin'
         )
 
-        user.set_password('987654321')
+        user.set_password('12345678')
 
         user.is_staff = True
         user.is_superuser = True

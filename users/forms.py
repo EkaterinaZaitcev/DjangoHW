@@ -4,7 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import CustomsUser
 
 
-class CustomUserCreationForm(UserCreationForm):
+class CustomsUserCreationForm(UserCreationForm):
     phone_number = forms.CharField(max_length=15, required=False, help_text='Введите номер телефона')
     username = forms.CharField(max_length=50, required=True)
     usable_password = None
