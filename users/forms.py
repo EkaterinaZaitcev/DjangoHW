@@ -1,16 +1,16 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from .models import CustomsUser
+from .models import CustomUser
 
 
-class CustomsUserCreationForm(UserCreationForm):
-    phone_number = forms.CharField(max_length=15, required=False, help_text='Введите номер телефона')
+class CustomUserCreationForm(UserCreationForm):
+    phone_number = forms.CharField(max_length=15, required=False, help_text='Введите номер телефона. Необязательно.')
     username = forms.CharField(max_length=50, required=True)
     usable_password = None
 
     class Meta:
-        model = CustomsUser
+        model = CustomUser
         fields = ('email','username','first_name', 'last_name', 'phone_number', 'password1', 'password2')
 
 
