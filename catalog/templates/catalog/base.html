@@ -161,14 +161,17 @@
     <div class="col-md-6 p-lg-5 mx-auto my-5">
       <h1 class="display-3 fw-bold">Интернет магазин</h1>
       <h3 class="fw-normal text-muted mb-3">Продаем всё на свете</h3>
+
       <div class="d-flex gap-3 justify-content-center lead fw-normal">
-        <a class="icon-link" href="#">
-          Learn more
-          <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-        </a>
-        <a class="icon-link" href="#">
-          Buy
-          <svg class="bi"><use xlink:href="#chevron-right"/></svg>
+        {% if user.is_authenticated %}
+        <h5 class="my-0 mr-md-auto font-weight-normal">Welcome {{ user.email }}!</h5>
+        <form method="post" action="{% url 'users:logout' %}" style="display: inline">
+            <button type="submit" class="p-2 btn btn-outline-primary">Выйти</button>
+        </form>
+        {% else %}
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Войти</a>
+        <a class="p-2 btn btn-outline-primary" href="{% url 'users:registration' %}">Регистрация</a>
+        {% endif %}
         </a>
       </div>
     </div>
