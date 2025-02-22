@@ -166,6 +166,7 @@
         {% if user.is_authenticated %}
         <h5 class="my-0 mr-md-auto font-weight-normal">Welcome {{ user.email }}!</h5>
         <form method="post" action="{% url 'users:logout' %}" style="display: inline">
+            {% csrf_token %}
             <button type="submit" class="p-2 btn btn-outline-primary">Выйти</button>
         </form>
         {% else %}
