@@ -9,7 +9,7 @@ from config.settings import EMAIL_HOST_USER
 class RegisterView(CreateView):
     template_name = 'users/registration.html'
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy('catalog:base')
+    success_url = reverse_lazy('catalog:product_list')
 
     def form_valid(self, form):
         user = form.save()
