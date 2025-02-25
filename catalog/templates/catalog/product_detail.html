@@ -13,8 +13,10 @@
         <p class="lead">Дата последнего изменения: {{object.updated_at}}</p>
         <img src="{{ object.image|media_filter }}"><br/>
         <a href="{% url 'catalog:product_list' %}" class="btn btn-primary" role="button" >Назад</a>
-        <a href="{% url 'catalog:product_update' object.pk %}" class="btn btn-secondary">Редактировать</a>
-        <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger ">Удалить</a>
+        {% if perms.can_unpublish_product or user == product.owner%}
+          <a href="{% url 'catalog:product_update' object.pk %}" class="btn btn-secondary">Редактировать</a>
+          <a href="{% url 'catalog:product_delete' object.pk %}" class="btn btn-danger ">Удалить</a>
+        {% endif %}
       </div>
     </div>
 </div>

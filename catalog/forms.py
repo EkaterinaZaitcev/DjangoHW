@@ -1,3 +1,4 @@
+from django import forms
 from django.forms import ModelForm, BooleanField
 from .models import Product, Category
 from django.core.exceptions import ValidationError
@@ -55,3 +56,8 @@ class ProductForm(StyleFormMixin, ModelForm):
             if ext not in valid_extensions:
                 raise ValidationError("Недопустимый формат файла. Загрузите JPEG или PNG.")
         return image
+
+class ProductsModeratorForm(StyleFormMixin, ModelForm):
+    class Meta:
+        model = Product
+        fields = ("status_publication", )
