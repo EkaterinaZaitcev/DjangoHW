@@ -13,6 +13,9 @@
         <p class="lead">{{ prod.updated_at}}</p>
         <img src="{{ prod.image }}" style="max-width: 450px; max-height: 300px"><br/>
         <a href="{% url 'catalog:product_detail' prod.pk %}" class="btn btn-primary" role="button" >Посмотреть</a>
+        {% if perms.can_unpublish_product or user == product.owner%}
+          <a href="{% url 'catalog:product_create' %}" class="btn btn-primary">Добавить продукт</a>
+        {% endif %}
       </div>
     </div><br/>
     {% endfor %}
