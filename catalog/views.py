@@ -49,6 +49,6 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
             return ProductsModeratorForm
         raise PermissionDenied
 
-class ProductDeleteView(DeleteView):
+class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy("catalog:product_list")
