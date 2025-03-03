@@ -5,6 +5,7 @@ from .forms import ProductForm, ProductsModeratorForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 from catalog.models import Product
+from .services import get_products_from_cache
 
 
 class HomeView(TemplateView):
@@ -18,6 +19,8 @@ class ContactsView(TemplateView):
 class ProductListView(ListView):
     model = Product
 
+    def get_queryset(self):
+        return get_products_from_cache()
 
 class ProductDetailView(DetailView):
     model = Product
