@@ -128,11 +128,11 @@ LOGIN_REDIRECT_URL = 'catalog:product_list'
 LOGOUT_REDIRECT_URL = 'catalog:product_list'
 LOGIN_URL = 'users:login'
 
-CACHE_ENABLED = True
+CACHE_ENABLED = os.getenv('CACHE_ENABLED', False) == 'True'
 if CACHE_ENABLED:
     CACHES = {
         'default': {
             'BACKEND': 'django.core.cache.backends.redis.RedisCache',
-            'LOCATION': os.getenv('LOCATION'),
+            'LOCATION': os.getenv('REDIS_LOCATION'),
         }
     }

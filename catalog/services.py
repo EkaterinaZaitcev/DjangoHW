@@ -23,6 +23,6 @@ def get_products_by_category(category_id):
     products = cache.get(key)
     if products is not None:
         return products
-    products = Product.objects.filter(category=Category.objects.get(pk=category_id))
+    products = Product.objects.filter(category_id=category_id)
     cache.set(key, products, 60)
     return products
