@@ -1,0 +1,16 @@
+{% extends 'catalog/base.html' %}
+{% load my_tags %}
+
+{% block content %}
+<div class="d-md-flex flex-md-equal flex-wrap w-100 my-md-5 ps-md-3">
+    {% for category in categorys %}
+    <div class="text-bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden">
+      <div class="my-3 py-3">
+        <h2 class="display-5">{{ category.name }}</h2>
+        <p class="lead">{{ category.description|truncatechars:100}}</p>
+        <a href="{% url 'catalog:product_by_category' category.id %}" class="btn btn-primary" role="button" >Посмотреть</a>
+        </div>
+    </div><br/>
+    {% endfor %}
+</div>
+{% endblock %}

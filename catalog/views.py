@@ -1,10 +1,13 @@
 from django.core.exceptions import PermissionDenied
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import ListView, DetailView, TemplateView, CreateView, UpdateView, DeleteView
 from .forms import ProductForm, ProductsModeratorForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from catalog.models import Product
+from catalog.models import Product, Category
+from .services import get_products_from_cache, get_products_by_category
 
 
 class HomeView(TemplateView):
@@ -18,6 +21,8 @@ class ContactsView(TemplateView):
 class ProductListView(ListView):
     model = Product
 
+    def get_queryset(self):
+        return get_products_from_cache()
 
 class ProductDetailView(DetailView):
     model = Product
@@ -52,3 +57,19 @@ class ProductUpdateView(LoginRequiredMixin, UpdateView):
 class ProductDeleteView(LoginRequiredMixin, DeleteView):
     model = Product
     success_url = reverse_lazy("catalog:product_list")
+
+class ProductsByCategoryView(View):
+    model = Category
+    def get(self, request, pk):
+        category = get_object_or_404(Category, id=pk)
+        products = get_products_by_category(pk)
+
+        return render(request, 'catalog/category_product.html',
+                      {'category': category, 'products': products})
+
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'catalog/category_list.html'
+    context_object_name = "categorys"
+
